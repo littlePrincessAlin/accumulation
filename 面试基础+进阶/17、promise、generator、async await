@@ -1,0 +1,100 @@
+这里你谈 promise的时候，除了将他解决的痛点以及常用的 API 之外，最好进行拓展把 eventloop 带进来好好讲一下，microtask(微任务)、macrotask(任务) 的执行顺序，如果看过 promise 源码，最好可以谈一谈 原生 Promise 是如何实现的。Promise 的关键点在于callback 的两个参数，一个是 resovle，一个是 reject。还有就是 Promise 的链式调用（Promise.then()，每一个 then 都是一个责任人）
+
+1、promise
+（1）promise为我们解决了什么？
+js是单线程的，由于这个缺陷导致js所有网络操作、浏览器事件，都必须异步执行。异步可以使用回调函数来实现：
+function callback() {
+    console.log('Done');
+}
+console.log('before setTimeout()');
+setTimeout(callback, 1000); // 1秒钟后调用callback函数
+console.log('after setTimeout()');
+
+但是回调函数第一看起来不好看，其二如果我们有无数的回调函数很容易造成回调深渊的问题。
+
+所以出现了promise，它用链式.then同步的写法来实现异步。
+（2）promise三个状态：
+pending
+fulfilled
+rejected
+（3）API
+all、allSettled、race、reject、resolve、then、catch
+
+* Promise.all（iterable）：参数是一个可迭代对象比如array
+Promise.all([
+      queryPermissionsWithRoleId({ roleId }),
+      queryRolePermissions({ roleId }),
+    ]).then(res => {
+      setRolePermissions({
+        ...res[1],
+        permissionsDTOList: res[0],
+      });
+    });
+有两种情况：当所有结果成功返回时按照请求顺序返回成功结果；当其中有一个失败方法时，则进入失败方法。
+* allSettled
+const resolved = Promise.resolve(2);
+const rejected = Promise.reject(-1);
+const allSettledPromise = Promise.allSettled([resolved, rejected]);
+allSettledPromise.then(function (results) {
+  console.log(results);
+});
+// 返回结果：
+// [
+//    { status: 'fulfilled', value: 2 },
+//    { status: 'rejected', reason: -1 }
+// ]
+* any
+const resolved = Promise.resolve(2);
+const rejected = Promise.reject(-1);
+const anyPromise = Promise.any([resolved, rejected]);
+anyPromise.then(function (results) {
+  console.log(results);
+});
+// 返回结果：
+// 2
+只要其中一个 Promise 变成 fulfilled状态，那么 any 最后就返回这个p romise。由于上面 resolved 这个 Promise 已经是 resolve 的了，故最后返回结果为 2
+* race
+对于图片的加载，特别适合用 race 方法来解决，将图片请求和超时判断放到一起，用 race 来实现图片的超时判断
+//请求某个图片资源
+function requestImg(){
+  var p = new Promise(function(resolve, reject){
+    var img = new Image();
+    img.onload = function(){ resolve(img); }
+    img.src = 'http://www.baidu.com/img/flexible/logo/pc/result.png';
+  });
+  return p;
+}
+//延时函数，用于给请求计时
+function timeout(){
+  var p = new Promise(function(resolve, reject){
+    setTimeout(function(){ reject('图片请求超时'); }, 5000);
+  });
+  return p;
+}
+Promise.race([requestImg(), timeout()])
+.then(function(results){
+  console.log(results);
+})
+.catch(function(reason){
+  console.log(reason);
+});
+（4）promise手写
+
+2、generator
+（1）写法
+function *foo(x) {
+  let y = 2 * (yield (x + 1))
+  let z = yield (y / 3)
+  return (x + y + z)
+}
+let it = foo(5)
+console.log(it.next())   // => {value: 6, done: false}
+console.log(it.next(12)) // => {value: 8, done: false}
+console.log(it.next(13)) // => {value: 42, done: true}
+
+3、async/await
+（1）与promise区别
+*await 相比直接使用 Promise 来说，优势在于处理 then 的调用链，能够更清晰准确的写出代码。
+缺点在于滥用 await 可能会导致性能问题，因为 await 会阻塞代码，也许之后的异步代码并不依赖于前者，
+但仍然需要等待前者完成，导致代码失去了并发性，此时更应该使用 Promise.all。
+*一个函数如果加上 async ，那么该函数就会返回一个 Promise

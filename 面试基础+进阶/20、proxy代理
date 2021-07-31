@@ -1,0 +1,48 @@
+1、
+var proxy = new Proxy(target, handler);
+
+new Proxy()表示生成一个Proxy实例，target参数表示所要拦截的目标对象，handler参数也是一个对象，用来定制拦截行为。
+var target = {
+   name: 'poetries'
+ };
+ var logHandler = {
+   get: function(target, key) {
+     console.log(`${key} 被读取`);
+     return target[key];
+   },
+   set: function(target, key, value) {
+     console.log(`${key} 被设置为 ${value}`);
+     target[key] = value;
+   }
+ }
+ var targetWithLog = new Proxy(target, logHandler);
+ 
+ targetWithLog.name; // 控制台输出：name 被读取
+ targetWithLog.name = 'others'; // 控制台输出：name 被设置为 others
+ 
+ console.log(target.name); // 控制台输出: others
+ targetWithLog 读取属性的值时，实际上执行的是 logHandler.get ：在控制台输出信息，并且读取被代理对象 target 的属性。
+ 在 targetWithLog 设置属性值时，实际上执行的是 logHandler.set ：在控制台输出信息，并且设置被代理对象 target 的属性的值
+
+2、Proxy的作用
+拦截和监视外部对对象的访问
+降低函数或类的复杂度
+在复杂操作前对操作进行校验或对所需资源进行管理
+
+3、handler有很多属性
+// 在读取代理对象的某个属性时触发该操作，比如在执行 proxy.foo 时。
+handler.get()
+// 在给代理对象的某个属性赋值时触发该操作，比如在执行 proxy.foo = 1 时。
+handler.set()
+// 在读取代理对象的原型时触发该操作，比如在执行 Object.getPrototypeOf(proxy) 时。
+handler.getPrototypeOf()
+
+handler.setPrototypeOf()
+
+andler.defineProperty()
+
+handler.has()
+
+handler.ownKeys()
+等等
+

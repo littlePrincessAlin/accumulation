@@ -1,0 +1,12 @@
+1、this指向
+  （1）箭头函数： 没有this/arguments/super，this是由包含他最近的函数的this决定的。
+  （2）非箭头函数：
+     直接调用func，this指向window；
+     obj.func(),this指向obj；
+     new func(),this被永远绑定在new的实例上；
+     apply、call、bind，this指向第一个参数；
+2、call、apply、bind手写、用法
+他们都是用来改变this指向的。
+func.call(thisArg, param1, param2, ...)
+func.apply(thisArg, [param1,param2,...])
+func.bind(thisArg, param1, param2, ...)()

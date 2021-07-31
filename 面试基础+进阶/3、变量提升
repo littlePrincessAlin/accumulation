@@ -1,0 +1,7 @@
+1、let const 和var有啥区别
+  let 没有变量提升
+  let 必须在块级作用域使用
+  let 不能重复命名
+  let 暂时性死区和临时失效区
+
+  var声明的变量会绑定在window上。

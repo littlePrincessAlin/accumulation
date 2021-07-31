@@ -1,0 +1,3 @@
+box-sizing设置：
+content-box 标准盒模型 总宽度=margin+border+padding+width
+border-box 怪异盒模型  宽度（设置的width） = 内容宽 +（左内边距+右内边距）+（左外边框+内外边框）

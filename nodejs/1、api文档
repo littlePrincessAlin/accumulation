@@ -1,0 +1,4 @@
+http://nodejs.cn/api/fs/fs_realpathsync_path_options.html
+
+1、fs.realpathSync(path[, options])
+返回解析的路径名。

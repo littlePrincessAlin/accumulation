@@ -1,0 +1,27 @@
+异步通信的方式。直接由 js 脚本向服务器发起 http 通信，然后服务器返回的数据，更新网页，不用刷新整个网页。
+
+1、手写
+//1：创建Ajax对象
+var xhr = window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject('Microsoft.XMLHTTP');// 兼容IE6及以下版本
+//2：配置 Ajax请求地址 如果是post请求需要setRequestHeader
+xhr.open('get','index.xml',true);
+//3：发送请求
+xhr.send(null); // 严谨写法
+//4:监听请求，接受响应
+xhr.onreadysatechange=function(){
+     if(xhr.readySate==4&&xhr.status==200 || xhr.status==304 )
+          console.log(xhr.responsetXML)
+}
+
+2、 优点
+（1）异步通信，不妨碍用户浏览页面或者其他操作；
+（2）局部刷新，无需重新刷新页面；
+（3）前端和后端负载平衡。最大程度的减少冗余请求和响应对服务器造成的负担，提升站点性能。
+（4）基于标准被广泛支持。
+（5）界面与应用分离。
+
+3、缺点：
+（1）back和History,对浏览器机制的破坏。
+（2）安全问题。易受到黑客攻击。
+（3）对搜索引擎支持较弱。
+（4）违背URL和资源定位的初衷。

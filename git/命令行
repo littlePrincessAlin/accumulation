@@ -1,0 +1,21 @@
+Git 本地仓库与远程仓库建立连接:
+建立新的文件夹当本地仓库
+mkdir repository_name #建立新的本地仓库
+cd repository_name
+git init
+git add .
+git commit -m "first commit" 
+
+将本地仓库与远程仓库关联起来:
+git remote add origin https://github.com/username/repository_name.git
+git push -u origin master
+
+
+如果是正常加入团队远程仓库，团队仓库是存在的，并且已经收到团队仓库的加入邀请或许可
+git clone ........
+git fetch origin xxx分支
+git checkout -b xxx分支 origin/xxx分支
+
+
+删除本地分支:
+git branch -D branch_name

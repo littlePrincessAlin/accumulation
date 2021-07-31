@@ -1,0 +1,22 @@
+1、js的数据类型：
+  （1） 7种基本类型：null 、undefined、 string、 number、 boolean、symbol、 bigInt
+  （2） 引用类型： function 、 Date、 Math、 Array、 正则表达式对象等
+
+  扩展：bigInt可以用来代表大于2的53次方-1的整数；表示任意大的整数。
+  定义一个 BigInt ，如：10n 或 BigInt(10)
+
+2、数据类型检测
+  （1）typeof : 除了null以外的所有基本类型，以及function类型可以判断
+  （2）instanceof： 准确判断引用类型，不能正确判断基本类型
+   (3) Object.prototype.toString.call()
+   (4) constructor：要是手动更改了原型，就不行了
+
+3、数据类型转换
+除了undefined、null、''、0、+0、NaN、false,其他都是true；
+
+4、undefined null 区别
+ （1）undefined 没有定义，指定义了但没有赋值；null是空对象，赋给一些可能会返回对象的变量初始化；
+ （2）typeof
+ （3） undefined===null -> false undefined==null->true
+
+5、手写instanceof

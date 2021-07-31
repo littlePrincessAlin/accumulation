@@ -1,0 +1,3 @@
+{
+  "presets": ["env","react"] //告诉babel-loader 使用ES6和JSX插件
+}

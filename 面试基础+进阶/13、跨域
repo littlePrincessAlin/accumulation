@@ -1,0 +1,46 @@
+1、cors：
+需要后端配置： Access-Alow-Origin-Control：'*'
+2、jsonp
+fetch-jsonp 的npm包中提供了一个jsonp 的方法
+export const JSONP = (url, data) =>
+  jsonp(url, data).then(async res => {
+    const ret = await res.json();
+    return ret;
+  });
+JSONP(
+      `https://cas-sso${getEnvStr()}koolearn.com/united/get-logined-ticket?returnType=jsonp`,
+      {},
+    )
+      .then(async data => {
+        getTicket(data);
+      })
+      .catch(error => {
+        message.error(error.message);
+      });
+就可以在本域下访问其他域下的api。
+3、window.parent.postMessage
+// 传送方
+window.parent.postMessage(
+        {
+          // 发送一些参数
+        },
+        '*'
+      );
+
+// 接受数据方，在callback拿参数
+window.addEventListener('message', callback);
+4、document.domain + iframe跨域【限主域相同，子域不同】
+父窗口：(http://www.domain.com/a.html)
+<iframe id="iframe" src="http://child.domain.com/b.html"></iframe>
+<script>
+    document.domain = 'domain.com';
+    var user = 'admin';
+</script>
+子窗口：(http://child.domain.com/b.html)
+document.domain = 'domain.com';
+// 获取父窗口中变量
+alert('get js data from parent ---> ' + window.parent.user);
+
+
+
+jsonp有什么缺点？

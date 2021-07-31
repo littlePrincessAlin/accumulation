@@ -1,0 +1,49 @@
+1、使用CDN的方式
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+// <!-- 生产环境中不建议使用 -->
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+2、使用React脚手架工具（推荐）
+# 安装脚手架
+npm install -g create-react-app
+# 创建项目
+create-react-app  myapp
+# 启动项目
+npm start
+
+3、使用Webpack构建工具
+# 步骤
+// 1. 安装Node、NPM
+	......
+// 2. 安装webpack工具
+    ......
+// 3. 安装babel
+    ......
+// 4. 创建配置文件
+    ......
+// 5. 创建项目目录结构
+    ......
+// 6. 配置webpack.config.js和package.json
+    ......
+// 7. 搭建本地服务
+    ......
+
+4、为什么要使用 webpack ？
+解耦需要：
+使用SPA（Single-page Application，单页面应用）开发大型项目时，解决模块之间的解耦和维护问题；
+前端工程化需要：
+前端开发逐渐向工程化演进，理解前端框架的项目构建的流程（如React、Vue、Angular）；
+项目扩展需要：
+理解Webpack核心概念（如Babel加载器、Plugin插件），便于项目协同开发与项目整合；
+面试需要：
+进入一线互联网公司的必备技能；
+
+5、Webpack搭建React开发环境步骤 
+具体参考：https://blog.csdn.net/yrqlyq/article/details/119106218
+设置默认npm使用淘宝镜像： npm config set registry https://registry.npm.taobao.org
+安装cnpm包，安装成功后npm命令更换为cnpm命令：
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+## 安装成功之后，直接像使用npm一样使用cnpm即可，例如：安装某个包就变成了
+cnpm i packageName
+

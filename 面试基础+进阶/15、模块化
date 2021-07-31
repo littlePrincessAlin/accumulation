@@ -1,0 +1,49 @@
+模块化分为：
+1、CommonJs：require 引入模块 | module.exports 暴露 ； 服务器端-例如node；同步的方式来引入模块；
+2、es6模块化：import 引入模块 | export 暴露
+3、AMD：require 引入模块 | define
+4、CMD：require 引入模块 | define
+
+CommonJS 和 ES6 中的模块化的两者区别是：
+1、CommonJs用于服务器端，属于同步引入，ES6异步引入，用于浏览器端，需要下载文件，如果用同步对渲染会有很大的影响；
+2、CommonJs的导出是值的拷贝，如果修改了该值，也不会影响导入；es6是实时绑定的方式，导入和导出都指向同一内存地址；
+var module = require('./a.js')
+module.a
+
+AMD 和 CMD 规范的区别？
+// CMD
+define(function(require, exports, module) {
+  var a = require("./a");
+  a.doSomething();
+  // 此处略去 100 行
+  var b = require("./b"); // 依赖可以就近书写
+  b.doSomething();
+  // ...
+});
+
+// AMD 默认推荐
+define(["./a", "./b"], function(a, b) {
+  // 依赖必须一开始就写好
+  a.doSomething();
+  // 此处略去 100 行
+  b.doSomething();
+  // ...
+})
+AMD 依赖前置，会提前加载所有依赖的js文件；CMD 依赖就近，支持动态require引入js模块
+
+
+
+为什么要进行模块化？
+
+在传统的 HTML 应用中，脚本加载经过 script 标签的 src 属性，有几个脚本就引用几个资源。html
+<script src="main.js"></script> <script src="index.js"></script> <script src="detail.js"></script>
+这样加载资源，有几个缺陷；前端
+脚本的加载会阻塞 DOM 树的渲染
+发起屡次请求
+脚本与脚本引用之间不方便
+若是脚本之间相互依赖，就必须按照顺序加载，不利于维护
+基于以上缘由，不适合大型应用
+script 标签提供了 defer 属性 和 async 属性来实现异步加载，不去阻塞 DOM 渲染。java
+async 异步加载，加载的时候与 DOM 渲染并行，可是加载完成以后就开始执行，会中断 DOM 渲染，另外若是有多个 async 脚本，不能保证加载顺序。
+defer 延时加载，当 DOM 渲染完成以及其余脚本执行完成后，才会执行本脚本；若是有多个 defer 脚本，按序加载。可是 IE 浏览器不支持此属性，因此在应用的时候最好把两个属性都加上。
+虽然  script 标签提供了方式实现异步加载，不阻塞 DOM 渲染，可是其余的问题仍是没有解决，而模块化开发就能有效的解决以上问题

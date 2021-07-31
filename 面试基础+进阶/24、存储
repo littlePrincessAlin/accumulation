@@ -1,0 +1,58 @@
+（1）有几种方式可以实现存储功能，分别有什么优缺点？
+存储                   生命周期                    存储大小      与服务器通信
+cookie            由服务器生成，可设置过期时间         4k         每次都在请求头携带，但会影响性能
+localStorage      除非手动清理，否则一直存在           5M         不能
+sessionStorage    页面关闭就清理了                   5M          不能
+indexDB           除非手动清理，否则一直存在          无限         不能
+
+对于cookie有以下属性：
+value：用于保存用户登陆态，应该将该值加密，不能使用明文的用户标识
+http-only：不能通过js访问cookie，减少xss
+secure：只在https请求携带
+same-site： 不能在跨域请求中携带 Cookie，减少 CSRF 攻击
+
+（2）什么是 Service Worker？
+运行在浏览器背后的独立线程，用来实现缓存。而且传输协议必须是https。
+*如何缓存？
+分三步：
+   1、注册Service Worker
+   2、监听install事件，用于缓存需要的文件
+   3、在用户访问的时候，就可以拦截请求查询是否存在缓存，存在缓存的话就可以直接读取缓存文件，否则就去请求数据。
+
+*查Service Worker的位置？
+开发者工具中的 Application 看到 Service Worker。
+
+*实现
+// index.js
+if (navigator.serviceWorker) {
+  navigator.serviceWorker
+    .register('sw.js')
+    .then(function(registration) {
+      console.log('service worker 注册成功')
+    })
+    .catch(function(err) {
+      console.log('servcie worker 注册失败')
+    })
+}
+// sw.js
+// 监听 `install` 事件，回调中缓存所需文件
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open('my-cache').then(function(cache) {
+      return cache.addAll(['./index.html', './index.js'])
+    })
+  )
+})
+
+// 拦截所有请求事件
+// 如果缓存中已经有请求的数据就直接用缓存，否则去请求数据
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      if (response) {
+        return response
+      }
+      console.log('fetch source')
+    })
+  )
+})

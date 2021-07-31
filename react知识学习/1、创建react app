@@ -1,0 +1,10 @@
+脚手架
+npx create-react-app my-app
+cd my-app
+npm start
+
+
+或者
+npm install -g create-react-app // 全局安装create-react-app (只需要安装一次)
+create-react-app demo-app // 创建项目
+cd demo-app // 进入项目目录

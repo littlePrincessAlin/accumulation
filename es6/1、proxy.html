@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  1、概念
+  Proxy ：用于创建一个对象的代理，从而实现基本操作的拦截。简单说：外界访问目标对象target都会进行过滤和改写。
+  语法：var proxy = new Proxy(target, handler);
+  target表示所要拦截的目标对象；handler也是个对象，定制拦截行为。
+  <script>
+    // 对空对象进行一层拦截，重写了对象属性的读取和设置行为。
+    var obj = new Proxy({}, {
+      get: function (target, propKey, receiver) {
+        console.log(`getting ${propKey}!`);
+        return Reflect.get(target, propKey, receiver);
+      },
+      set: function (target, propKey, value, receiver) {
+        console.log(`setting ${propKey}!`);
+        return Reflect.set(target, propKey, value, receiver);
+      }
+    });
+
+    obj.count = 1; // 赋值操作其实是set 行为  setting count!
+
+    ++obj.count; // getting count!   setting count! 2
+  </script>
+</body>
+
+</html>

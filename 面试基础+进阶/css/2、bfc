@@ -1,0 +1,43 @@
+块级格式化上下文，是一个独立渲染的区域，使得bfc内部的元素与外部元素相互隔离，是内部元素的定位不会相互影响。
+
+1、触发条件
+（1）根元素
+（2）position: inline-block | table
+（3）float元素
+（4）overflow !== visible
+（5）绝对定位position为absolute或fixed
+
+2、规则
+（1）在BFC中，盒子内的元素从顶端开始垂直地一个接一个地排列
+（2）属于同一个bfc的两个相邻的box可能会发生margin重叠
+（3）bfc中的子元素的margin box左边，与bfc border box的左边重叠
+（4）bfc的区域不会与float元素区域重叠
+（5）计算bfc的高度时，浮动的子元素也参与计算
+（6）文字层不会被浮动层覆盖，环绕于周围
+
+3、应用:
+（1）清除浮动：让浮动内容和周围的内容等高
+当我们不给父节点设置高度，子节点设置浮动的时候，会发生高度塌陷，这个时候我们就要清楚浮动。
+把父元素的box变成BFC：
+  overflow: hidden 
+
+（2）解决外边距合并问题
+把其中一个子元素设置成BFC
+
+（3）不被浮动元素覆盖 : 两栏布局
+<div class="column"></div>
+<div class="column"></div>
+.column:nth-of-type(1) {
+  float: left;
+  width: 200px;
+  height: 300px;
+  margin-right: 10px;
+  background-color: red;
+}
+
+.column:nth-of-type(2) {
+  overflow: hidden;/*创建bfc */
+  height: 300px;
+  background-color: purple;
+}
+

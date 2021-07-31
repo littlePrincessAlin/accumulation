@@ -1,0 +1,10 @@
+共同点：使元素不可见
+
+区别：
+1、display：none   使元素完全从渲染树中消失，渲染时候不占空间；
+   visibility：hidden 只是内容不可见，但元素不会从渲染树中消失，渲染占据空间；
+2、display：none  非继承属性，子孙节点消失，是因为元素从渲染树中消失造成的，所以修改子孙节点属性无法显示；
+  visibility：hidden 继承属性，子孙节点消失是因为继承了hidden，通过设置visibility：visible 可以让子孙节点显示；
+3、display：none  会导致重排
+  visibility：hidden 会导致重绘
+4、读屏器不会读取display：none 的内容；会读取visibility: hidden;元素内容

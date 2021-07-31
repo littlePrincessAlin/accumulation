@@ -1,0 +1,41 @@
+1、原型链：
+在访问对象的某个属性和方法时，如果在当前对象内没有找到，就会向它所属类的原型上查找，如果没有的话，依次向上查找至object.prototype，如果找不到则为null，这个向上查找的整个机制被成为原型链。
+2、继承
+  原型继承 借用构造函数继承 组合继承 原型式继承 寄生式继承 寄生组合式继承
+
+3、（略）什么是面向对象
+简单说就是，将功能通过对象来实现，把功能封装在对象中，让对象去实现具体的细节。
+
+4、涉及面试题汇总
+
+ （1）ES5的继承和ES6的继承有什么区别？
+ES5：通过prototype或构造函数机制来实现。 ES5的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到this上（Parent.apply(this)）。
+ES6：通过class关键字定义类，里面有构造方法，类之间通过extends关键字实现继承。子类必须在constructor方法中调用super方法，继承父类的this
+ （2）原型如何实现继承？
+通过原型链实现继承。手写
+组合继承：
+function Parent3 () {
+  this.name = 'parent3';
+  this.play = [1, 2, 3];
+}
+function Child3() {
+  Parent3.call(this);
+  this.type = 'child3';
+}
+Child3.prototype = new Parent3(); // 或者你也可以让孩子的原型指向父构造函数的原型Parent.prototype
+或者
+function Parent5 () {
+  this.name = 'parent5';
+  this.play = [1, 2, 3];
+}
+function Child5() {
+  Parent5.call(this);
+  this.type = 'child5';
+}
+Child5.prototype = Object.create(Parent5.prototype);
+Child5.prototype.constructor = Child5;
+
+ （3）class如何实现继承？
+extends、constructor、super
+ （4）class本质？是个函数
+

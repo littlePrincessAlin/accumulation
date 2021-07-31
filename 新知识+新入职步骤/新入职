@@ -1,0 +1,74 @@
+新入职你可以按照一下顺序来下载一些你所必备的工作软件以及环境搭建：
+
+1、通过safari安装chrome浏览器
+http://www.pc6.com/mac/110545.html
+2、对Chrome进行设置
+打开设置：
+（1）搜索引擎，地址栏中使用的搜索引擎选择百度
+（2）掘金插件：https://juejin.cn/extension
+（4）header editor：（未在本电脑下载）
+
+3、在Chrome下载：
+（1）vscode：并且下载vscode自己的扩展：
+（2）微信charles、postman、wps、有道云、语雀等办公软件
+（3）node：https://blog.csdn.net/m0_37896739/article/details/83545890
+（4）nrm：npm的镜像源管理工具
+    sudo npm install -g nrm
+    nrm ls查看可选的源
+    切换淘宝源：nrm use taobao
+    新增某个源：nrm add registry http://registry.npm.frp.trmap.cn/
+    删除对应的源：执行命令nrm del <registry>
+    测试相应源的响应时间： nrm test npm
+（5）git：
+  homebrew: https://zhuanlan.zhihu.com/p/90508170
+
+  下载git：https://git-scm.com/download/mac
+
+  // 不重要 ～下面没啥用👇
+  教程：官网上说可以通过homebrew下载git等各个你所需要的东西，那么接下来我们开始下载homebrew：https://zhuanlan.zhihu.com/p/90508170
+  命令行：/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  直接使用npm命令下载，巨慢而且还有可能装不上，所以你可以试试使用清华大学的镜像源：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
+  M1芯片的电脑你可以试试：https://zhuanlan.zhihu.com/p/362369069
+  
+（6）nvm： https://www.cnblogs.com/lonae/p/14899110.html
+ 命令行： curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+ 重启终端你就可以使用nvm了
+ nvm ls ## 列出所有安装的版本
+ nvm current ## 显示当前的版本
+ nvm install <version> ## 安装指定版本
+ nvm uninstall <version> ## 删除已安装的指定版本
+ nvm use <version> ## 切换使用指定的版本node
+
+（7）yarn：
+brew install yarn 
+npm install -g yarn      文件没有root权限的问题,在运行语句前面加上sudo就行了
+yarn --version
+（8）注册github、设置 git密钥和公用：
+https://blog.csdn.net/qq_36667170/article/details/79094257
+创建ssh key： ssh-keygen -t rsa -C "1361821021@qq.com"  // 邮箱
+看下是否有ssh key的文件：~/.ssh
+添加SSH Key到GitHub：点击右上角新建一个SSH Key。
+测试ssh key能否使用：ssh -T git@github.com // 就是这样粘过去就行
+
+git 配置
+// 查看系统config
+git config --system --list
+//查看当前用户（global）配置
+git config --global  --list
+// 查看当前仓库配置信息
+git config --local  --list
+#用户信息（必须添加）
+git config --global user.name yinkun
+git config --global user.email 1kun@sohu.com
+#push模式（必须添加）
+git config --global push.default simple
+#window下换行符(必须添加）
+git config --global core.autocrlf true
+#git方法简写（各取所需吧）
+git config --global alias.ci commit
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.st status
+git config --global alias.dom "diff origin/master --name-only" #查看当前分支基于主干改了那些文件
+git config --global alias.pom "pull origin master" #拉取主干代码更新当前分支
+git config --global alias.sst "status -sb"

@@ -1,0 +1,24 @@
+1、手写
+（1）浅拷贝
+
+Object.assign
+或者展开运算符
+
+（2）深拷贝
+
+可以通过 JSON.parse(JSON.stringify(object)) 来解决
+let a = {
+    age: 1,
+    jobs: {
+        first: 'FE'
+    }
+}
+let b = JSON.parse(JSON.stringify(a))
+a.jobs.first = 'native'
+console.log(b.jobs.first) // FE
+
+该方法也是有局限性的
+
+会忽略 undefined
+不能序列化函数
+不能解决循环引用的对象

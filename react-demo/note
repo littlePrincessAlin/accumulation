@@ -1,0 +1,40 @@
+1、webpack-react:
+你可以试着学习webpack 搭建 react 项目。
+虽然脚手架使用方便，但是脚手架也有其弊端，比如就是脚手架搭建的项目会有很多用不到的模块，
+而且脚手架搭建的项目要按需更改配置就需要 eject 出 webpack 的配置，且这个过程是不可逆的。
+主要介绍自己实际使用webpack 手动搭建react的基础项目的记录。
+参考：https://zhuanlan.zhihu.com/p/337130965
+
+（1）确保
+node -v
+npm -v
+（2）初始化package.json
+npm init -y
+（3）安装webpack和webpack-cli 
+npm install webpack webpack-cli -D
+
+package.json 文件中在devDependencies模块下会有对应的 webpack 和 webpack-cli 及版本
+（4） 创建 webpack.config.js 配置文件
+（5）安装 react 和 react-dom
+npm install react react-dom -S
+（6）安装解析 ES6 和 JSX 语法的 Babel
+npm install babel-core babel-loader babel-preset-env babel-preset-react -D
+（7） 根目录下创建.babelrc文件
+（8）安装本地启动服务的 webpack-dev-server 和解析解析 html 的插件 html-webpack-plugin
+npm install webpack-dev-server html-webpack-plugin -D
+（9）安装打包时保证build文件夹下的是最新的打包文件插件clean-webpack-plugin
+npm install clean-webpack-plugin -D
+（10）根目录下新建src文件夹和index.html文件，并在src下新建index.js文件 见文件
+（11）补全 webpack.config.js 配置文件和 package.json 文件
+见文件
+（12）package.json 中配置项目的启动和打包命令
+（13）npm run dev | npm run build
+
+问题：
+（1）如果你npm install时候只生成了lock文件，但是没有出现node moudles，你可以删除lock文件，
+npm cache clean --force 然后再重新npm install
+（2）Cannot find module ‘webpack-cli/bin/config-yargs‘
+webpack版本从@4.xx版本更新到了@5.xx版本，但是webpack-dev-server并没有进行相对应的更新，两个版本不兼容导致的这个错误
+解决：
+安装之前需要将webpack和webpack-cli卸载： npm uninstall webpack -D | npm uninstall webpack-cli -D
+安装webpack： npm install webpack@4.39.2 -D | npm instal lwebpack-cli@3.3.12 -D

@@ -1,0 +1,6 @@
+<div onClick={this.handleClick.bind(this)}>点我</div>
+
+React并不是将click事件绑定到了div的真实DOM上，在document监听了所有的事件（但是react17监听的是root：有利于多个react版本并存，像微前端。），当事件发生并冒泡（也不是原生的冒泡，react自己实现的合成事件）到document的时候，react将事件内容封装并交给真正的处理函数执行；
+这种方式一边减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。
+
+因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。

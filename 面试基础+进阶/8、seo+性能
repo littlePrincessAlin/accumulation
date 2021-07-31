@@ -1,0 +1,38 @@
+SEO：搜索引擎优化
+1、语义化的html代码：让搜索引擎理解网页
+2、重要内容的html放在最前：搜索引擎抓取html是从上到下抓取的，有的有长度限制，一定要保证重要的内容一定会被抓取到
+3、重要内容不要用js输出：爬虫不会执行js获取内容
+4、少用iframe：搜索引擎不会抓取iframe内容
+5、非装饰性图片必须加alt
+6、提高网站速度
+7、合理的title、describetion、keywords
+
+web性能优化：
+1、降低请求量：合并资源、减少http请求数、雪碧图、对组件使用Gzip压缩
+2、加快请求速度：预解析DNS、减少域名数、CDN分发、
+3、缓存：http协议缓存请求、离线缓存manifest、离线数据缓存localStorage、配置ETag
+4、渲染：减少dom数量、js（减少DOM访问）/css优化（图片预加载；使用<link>不使用@import；将样式表放到页面顶部；不使用CSS表达式）、加载顺序、服务端渲染、pipelines？
+
+
+虚拟dom会提高性能？为啥？必考
+虚拟 dom 相当于在 js 和真实 dom 中间加了一个缓存，利用 dom diff 算法避免了没有必要的 dom 操作，从而提高性能
+
+
+常见的性能优化：
+减少 HTTP 请求数
+减少 DNS 查询
+使用 CDN
+避免重定向
+图片懒加载
+减少 DOM 元素数量
+减少DOM 操作
+使用外部 JavaScript 和 CSS
+压缩 JavaScript 、 CSS 、字体、图片等
+优化 CSS Sprite
+使用 iconfont
+字体裁剪
+多域名分发划分内容到不同域名
+尽量减少 iframe 使用
+避免图片 src 为空
+把样式表放在link 中
+把JavaScript放在页面底部

@@ -1,0 +1,13 @@
+此项目包含内容：
+  1、生成在线文档； storybook
+  2、npm发布
+
+知识点：
+  1、ts：简单类型、复杂类型、接口、类、泛型、声明文件
+  2、css：sass、variable、mixin、function、大型项目样式文件组织
+  3、react：一些hooks
+  4、组件测试：jest、react-testing-library、基础断言、mock模块和实现、行为模拟
+  5、第三方库：react-translation、fontawesome、axios
+  6、开发和文档：storybook的安装使用、编写stroies、添加react-doc-gen、添加使用addon、生成静态页面
+  7、更多：js模块类型、bundler的概念和使用、npm发布和配置、husky提交前验证、travis CI/CD集成
+
