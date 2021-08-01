@@ -1,0 +1,14 @@
+
+（1）更新state会触发的生命周期
+getDerivedStateFormProps
+shouldComponentUpdate
+render
+getSnapshotBeforeUpdate
+componentDidUpdate
+
+（2）更新props子组件会触发的周期
+- getDerivedStateFormProps
+- shouldComponentUpdate
+- render
+- getSnapshotBeforeUpdate
+- componentDidUpdate

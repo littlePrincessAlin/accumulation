@@ -4,3 +4,13 @@ React并不是将click事件绑定到了div的真实DOM上，在document监听�
 这种方式一边减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。
 
 因此如果不想要是事件冒泡的话应该调用event.preventDefault()方法，而不是调用event.stopProppagation()方法。
+
+React 事件处理---修改 this 指向
+方式 
+1：通过 bind 方法进行原地绑定，从而改变 this 指向 方式  <button onClick={this.getMsg.bind(this)}>点我</button>
+2：通过创建箭头函数方式 
+3：在 constructor 中提前对事件进行绑定方式  this.getMsg = this.getMsg.bind(this)
+4：将事件调用的写法改为箭头函数的形式
+
+
+参考：https://www.nowcoder.com/discuss/629644?type=all&order=time&pos=&page=1&ncTraceId=&channel=-1&source_id=search_all_nctrack

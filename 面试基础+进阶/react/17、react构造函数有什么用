@@ -1,0 +1,8 @@
+1、构造函数目的：
+（1）通过将对象分配给this.state来初始化本地状态
+（2）将事件处理函数绑定在实例上
+
+
+构造函数用来新建父类的this对象；子类必须在constructor方法中调用super方法；否则新建实例时会报错；因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法；子类就得不到this对象。
+constructor () 必须配上 super(), 如果要在constructor 内部使用 this.props 就要 传入props , 否则不用
+JavaScript中的 bind 每次都会返回一个新的函数, 为了性能等考虑, 尽量在constructor中绑定事件

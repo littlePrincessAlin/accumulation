@@ -1,0 +1,23 @@
+1、hash路由
+监听hashchange事件感知hash变化
+改变 hash 可以直接通过 location.hash=xxx
+2、History
+ history.pushState 和 resplaceState、 history.go() 
+
+3、react-router实现思想
+基于history库实现上述不同的路由，并且能够保存历史记录，
+通过维护的列表，在每次 URL 发生变化的回收，通过配置的 路由路径，匹配到对应的 Component，并且 render
+
+4、路由切换
+（1）
+// when location = { pathname: '/about' }
+<Route path='/about' component={About}/> // renders <About/>
+（2）
+<Switch>
+   <Redirect from='/users/:id' to='/users/profile/:id'/> //重定向
+   <Route exact path="/" component={Home} />
+   <Route path="/about" component={About} />
+   <Route path="/contact" component={Contact} />
+</Switch>
+（3）
+<Link to="/">Home</Link>  

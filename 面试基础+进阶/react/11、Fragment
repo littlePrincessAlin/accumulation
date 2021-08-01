@@ -1,0 +1,22 @@
+组件返回的元素只能又一个根元素，react为了不添加多余的dom节点，可以使用Fragment。它不会渲染任何元素。
+
+// 一般形式
+render() {
+  return (
+    <React.Fragment>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </React.Fragment>
+  );
+}
+// 也可以写成以下形式
+render() {
+  return (
+    <>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </>
+  );
+}

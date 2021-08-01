@@ -1,0 +1,51 @@
+react高阶函数、render props、hooks区别，为啥要不断迭代
+
+
+首先，这三个都是为了解决代码复用的主要方式。
+
+（1）高阶组件HOC：复用组件逻辑，是一种基于react组件特性形成的设计模式，高阶组件参数是组件，返回值是新组件的函数。一般用作鉴权，高阶组件中会进行一些通用的逻辑处理，并使用新数据去渲染被包裹的组件。
+HOC缺点：hoc传递给被包裹的组件的props容易和被包裹后的组件重名，进而被覆盖。
+HOC优点：逻辑复用，不影响被包裹组件的内部逻辑。
+
+
+
+（2）render props：告知组件需要渲染什么内容的函数props；界面和功能分离
+// ToggleRenderProps组件内的state放到props中
+<div>
+    {render({
+        on:this.state.on,
+        toggle:this.toggle
+    })}
+</div>
+// 调用者：我来决定渲染逻辑
+render() {
+    return (
+        <div>
+            <ToggleRenderProps render={({on, toggle})=>(
+                <div>
+                {
+                    on && <h1>Hey zidea</h1>
+                }
+                
+                <button onClick={toggle}>隐藏/显示</button>
+                </div>
+            )}/>
+        </div>
+    )
+} 
+优点：数据共享、代码复用、将组件内的state作为props传递给调用者，将渲染逻辑交给调用者；
+缺点：无法在return语句外访问数据、嵌套写法不够优雅；
+
+
+
+（3）hooks：可以让你在不写class情况下使用state以及其他react特性
+hook解决了hoc的props覆盖问题，同时使用的方式解决了render props的嵌套地狱
+
+优点： 
+ *使用直观
+ *解决hoc的props重名问题
+ *解决render props因共享数据而出现的嵌套地狱问题
+ *能在return之外使用数据问题
+
+总结：以上三种都可以解决代码复用问题，但是hoc和render props都有特定的使用场景，并且有明显的缺点。hook是react16.8更新的api，
+让组件逻辑复用更简洁明了，同时解决了hoc和render props的一些缺点。

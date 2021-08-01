@@ -1,0 +1,6 @@
+PureComponent是一个react组件，来优化react程序，减少render次数，提高组件性能。省去虚拟DOM的生成和对比过程，达到提升性能的目的。
+
+当prop和state发生变化时，可以通过shouldComponentUpdate生命周期函数return false来阻止页面刷新，从而减少render次数。
+PureComponent会自动执行它～
+
+不过，PureComponent中的shouldComponentUpdate只是浅比较。

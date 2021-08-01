@@ -1,0 +1,35 @@
+高阶组件就是一个函数，并且该函数接受一个或多个组件作为参数，并返回一个新的组件，它只是一种组件的设计模式，这种设计模式是react自身的组合性质必然产生的。
+我们将它成为纯组件，因为它们可以接受任何动态提供的自组件，但它不会修改或复制其输入组件中的任何行为
+
+// hoc的定义
+function withSubscription(WrappedComponent, selectData) {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        data: selectData(DataSource, props)
+      };
+    }
+    // 一些通用的逻辑处理
+    render() {
+      // ... 并使用新数据渲染被包装的组件!
+      return <WrappedComponent data={this.state.data} {...this.props} />;
+    }
+  };
+ 
+// 使用
+const BlogPostWithSubscription = withSubscription(BlogPost,
+  (DataSource, props) => DataSource.getBlogPost(props.id));
+
+1、hoc优缺点：
+优点：逻辑复用、不影响被包裹组件的内部逻辑。
+缺点：hoc传递给参数组件的props容易和被包裹后的组件重名，进而被覆盖
+
+2、适用场景：
+代码复用、逻辑抽象；
+渲染劫持；
+state更改；
+props更改；
+
+3、具体场景：
+权限控制、组件渲染性能追踪、页面复用

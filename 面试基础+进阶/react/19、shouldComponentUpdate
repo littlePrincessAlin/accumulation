@@ -1,0 +1,12 @@
+
+shouldComponentUpdate(nexrProps) {
+    if (this.props.num === nexrProps.num) {
+        return false
+    }
+    return true;
+}
+shouldComponentUpdate提供了两个参数nextProps和nextState，表示下一次props和一次state的值，当函数返回false时候，render()方法不执行，组件也就不会渲染，返回true时，组件照常重渲染。此方法就是拿当前props中值和下一次props中的值进行对比，数据相等时，返回false，反之返回true。
+
+
+注意新旧对比使用的是浅比较。
+JSON.parse(JSON.stringfy())进行深拷贝

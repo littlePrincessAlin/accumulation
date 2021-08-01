@@ -1,0 +1,18 @@
+提供将子节点渲染到父组件以外的dom节点。
+
+Portals：使组件可以脱离父组件层挂载dom上任何位置。
+语法：ReactDOM.createPortal(child, container);
+
+
+举个例子：
+
+import DemoComponent from './DemoComponent';
+render() {
+  // react会将DemoComponent组件直接挂载在真实的 dom 节点 domNode 上，生命周期还和16版本之前相同。
+  return ReactDOM.createPortal(
+    <DemoComponent />,
+    domNode,
+  );
+}
+
+当父组件具有overflow: hidden或者z-index时，组件可能被其他元素遮挡，这时可以考虑使用插槽让组件脱离父组件。比如对话框、

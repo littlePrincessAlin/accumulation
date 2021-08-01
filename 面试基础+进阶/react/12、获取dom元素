@@ -1,0 +1,42 @@
+ref来获取某个子节点的实例
+
+1、字符串<p ref="info">span</p>
+class Page extends Component {
+    componentDidMount(){
+        // ReactDOM.findDOMNode在组件挂载后才可以使用，在constructor中使用会报错。
+        let mySpan=this.refs['mySpan']，
+            mySpanDOM =ReactDOM.findDOMNode(mySpan);
+
+        alert(mySpanDOM);  //[object HTMLSpanElement]
+    }
+
+    render() {
+        return (
+            <span ref="mySpan"></span>
+        );
+    }
+}
+
+2、<p ref={ele => this.info = ele}></p>
+class Page extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        alert(this._dom);  //[object HTMLSpanElement]
+    }
+
+    render() {
+        return (
+            <span ref={span => this._dom = span}>hello world</span>
+        );
+    }
+}
+
+3、React.createRef()
+4、useRef
+
+
+注意：react不可以在render访问refs。因为render阶段dom还没有生成，无法获取dom。
+DOM 的获取需要在 pre-commit 阶段和 commit 阶段

@@ -1,0 +1,7 @@
+1、shouldComponentUpdate和PureComponent
+可以利用 shouldComponentUpdate或者 PureComponent 来减少因父组件更新而触发子组件的 render，从而达到目的。
+2、高阶组件
+在函数组件中，并没有 shouldComponentUpdate 这个生命周期，可以利用高阶组件，封装一个类似 PureComponet 的功能。
+3、使用 React.memo
+只能用于函数组件。是一个高阶函数，
+和PureComponent都是进行性能调优的，不同点是，memo只能对props的情况确定是否渲染，而PureComponent是针对props和state。memo是高阶组件。
