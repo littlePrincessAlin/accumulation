@@ -3,7 +3,7 @@
 getDerivedStateFormProps
 shouldComponentUpdate
 render
-getSnapshotBeforeUpdate
+getSnapshotBeforeUpdate：废掉了
 componentDidUpdate
 
 （2）更新props子组件会触发的周期

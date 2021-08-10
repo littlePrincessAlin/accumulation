@@ -79,15 +79,15 @@ Promise.prototype.finally = function(callback) {
 // 在任何情况下，Promise.all 返回的 promise 的完成状态的结果都是一个数组
 Promise.all = function(promises) {
   return new Promise((resolve, reject) => {
-    let result = [];
-    let index = 0;
+    let result = []; // 存放promises每一项执行的结果的结果
+    let index = 0; // 用来遍历promises的索引
     let len = promises.length;
-    if(len === 0) {
+    if(len === 0) { // 如果没有promises数组那么直接resolve result掉
       resolve(result);
       return;
     }
    
-    for(let i = 0; i < len; i++) {
+    for(let i = 0; i < len; i++) { // 循环promises
       // 为什么不直接 promise[i].then, 因为promise[i]可能不是一个promise
       Promise.resolve(promise[i]).then(data => {
         result[i] = data;
@@ -100,3 +100,47 @@ Promise.all = function(promises) {
   })
 }
 // promise.allsettle()
+// 不管失败或者成功，都会拿到所有的结果放入一个数组中
+// 例如下面这种格式
+/*
+    [
+    { status: 'fulfilled', value: 1 },
+    {
+      status: 'rejected',
+      value: [Error: ENOENT: no such file or directory, open './name123.txt'] {
+        errno: -2,
+        code: 'ENOENT',
+        syscall: 'open',
+        path: './name123.txt'
+      }
+    },
+    { status: 'fulfilled', value: '11' },
+    { status: 'fulfilled', value: 2 }
+  ]
+*/
+Promise.allSettled = function(promises) {
+  return new Promise((resolve, reject) => {
+    let arr = [];
+    let times = 0;
+    const setData = (index, data) => {
+      arr[index] = data;
+      if (++times === promises.length) {
+        resolve(arr);
+      }
+      console.log('times', times)
+    }
+
+    for (let i = 0; i < promises.length; i++) {
+      let current = promises[i];
+      if (isPromise(current)) {
+        current.then((data) => {
+          setData(i, { status: 'fulfilled', value: data });
+        }, err => {
+          setData(i, { status: 'rejected', value: err })
+        })
+      } else {
+        setData(i, { status: 'fulfilled', value: current })
+      }
+    }
+  })
+}
