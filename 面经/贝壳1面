@@ -1,0 +1,51 @@
+1、项目
+2、webpack：分包、loader、plugin
+3、react：生命周期、hook有哪些注意点（不能在条件判断中使用）、函数组件对比class组件有哪些好处和缺点、hooks优化、
+4、
+//1、请写出输出内容
+async function async1() {
+    console.log('async1 start');
+    await async2();
+    console.log('async1 end');
+}
+async function async2() {
+	console.log('async2');
+}
+
+console.log('script start');
+
+setTimeout(function() {
+    console.log('setTimeout');
+}, 0)
+
+async1();
+
+new Promise(function(resolve) {
+    console.log('promise1');
+    resolve();
+}).then(function() {
+    console.log('promise2');
+});
+console.log('script end');
+
+
+答案：
+'script start'
+'async1 start'
+'async2'
+'promise1'
+'script end'
+'async1 end'
+'promise2'
+'setTimeout'
+5、数组扁平化处理
+const flatArray = arr => {
+  return arr.reduce((result, item)=>{
+    return (result || []).concat(Array.isArray(item)? flatArray(item): item);
+  },[])
+}
+
+console.log(flatArray([1,[2,[3]]]))
+6、跨域
+7、性能优化
+8、缓存--浏览器/http

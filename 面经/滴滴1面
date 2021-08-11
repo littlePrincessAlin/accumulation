@@ -1,0 +1,14 @@
+1、webpack的trunk和module
+2、https的过程，以及加密和解密
+3、react踩过什么hook的坑
+4、http302和304区别
+5、中序遍历二叉树，递归&迭代
+6、js事件机制，页面刷新和页面请求属于哪个任务
+7、生成器和迭代器
+8、promise，概念和api，手写promise.any
+9、http的cookie有什么属性，为啥前端js能设置cookie可以跨域的属性（之前洪真讲的）
+10、flex grow布局，flex ：1
+11、flex会对元素有啥影响
+12、useEffect有啥坑
+13、git，我有俩分支，想上线b，以及a的部分功能，你咋办
+14、

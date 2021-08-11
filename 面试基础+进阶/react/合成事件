@@ -1,0 +1,16 @@
+为了解决跨浏览器兼容性问题，React 会将浏览器原生事件（Browser Native Event）封装为合成事件（SyntheticEvent）
+传入设置的事件处理器中。
+
+React 并没有直接将事件附着到子元素上，而是以单一事件监听器的方式将所有的事件发送到顶层进行处理。这样 React 在更新 
+DOM 的时候就不需要考虑如何去处理附着在 DOM 上的事件监听器，最终达到优化性能的目的
+
+【事件委托】
+1当用户在为onClick添加函数时,React并没有将Click绑定到DOM上面
+2而是在document处监听所有支持的事件,当事件发生并冒泡至document处时,React将事件内容封装交给中间层 SyntheticEvent (负责所有事件合成)
+3所以当事件触发的时候, 对使用统一的分发函数 dispatchEvent 将指定函数执行
+
+为何要合成事件：
+1兼容性和跨平台
+2挂在统一的document上，减少内存消耗，避免频繁解绑
+3方便事件的统一管理（事务机制）
+4dispatchEvent事件机制
