@@ -7,9 +7,18 @@
 6、去除不必要插件，通常就是开发环境与生产环境用同一套配置文件导致
 7、优化devtool中的source-map
 
-打包效率
+打包效率：
 1、模块化引入需要的部分；第三方库采用引入方式
 2、提取公共代码
 3、配置devtool   devtool: 'inline-source-map',
 4、选择合适的loader；个别loader开启cache 如babel-loader
-5、优化构建时的搜索路径 指明需要构建目录及不需要构建目录
+5、优化构建时的搜索路径 指明需要构建目录及不需要构建目录 ---- 分包splitChunks
+
+
+优化webpack打包速度：
+1、减少文件搜索范围
+   比如通过别名
+   loader 的 test，include & exclude
+2、Webpack4 默认压缩并行
+3、Happypack 并发调用
+4、babel 也可以缓存编译
