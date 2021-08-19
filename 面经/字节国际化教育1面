@@ -1,0 +1,20 @@
+1、图片格式区别：png-8、png-24、jpeg、gif、svg ；png的好像可以设置透明度之类的
+2、base64怎么转文件流
+3、http1.x和http2.0区别
+4、前端请求数据到后端响应返回经厉了哪些过程；发请求报文---> http缓存 ---> 三次握手--- > 发数据那一套
+5、三次握手发包主要是哪一祯，干啥的；我答的是客户端服务端都是全双工的巴拉巴拉
+6、cookie和session的区别
+7、cookie和localStorage sessionStorage的区别，以及indexDB的区别，如何取；它们可以存储的大小？
+8、cookie的httpOnly干啥的 
+9、跨域； 跨域的jsonp除了支持get还能支持哪些请求，为啥不支持post；
+postMessage能传递函数吗？如果我一个浏览器开两个tab，postMessage能通信吗？
+cors的时候除了Aeecss-Control-Alow-Origin 这个外还能指定请求的方式你知道吗Aeecss-Method
+10、http缓存细答；协商缓存分别对应哪部分请求头，以及对应的是哪两个字段？ if-None-Since 好像是这个
+11、节流&先触发节流
+12、写一个算法：1～n的数全排列
+13、http属于哪个网络协议层
+14、你知道原始的图片和base64图片有啥区别吗？
+15、new操作符的过程
+16、cookie设置过期时间是哪个API
+17、localStorage 如何一次清除所有的，localStorage下有个clear的API
+18、jsBridge
